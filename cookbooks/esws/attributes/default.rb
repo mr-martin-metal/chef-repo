@@ -6,3 +6,5 @@ node.default['esws']['ssh_user']="johndo"
 node.default['esws']['ssh_pwd']="secret"
 node.default['esws']['user']="vagrant"
 node.default['esws']['group']="vagrant"
+
+node.default['esws']['secret_file']="http://ubumameww.opentext.net/cloud/repository/secrets/secret_key"
