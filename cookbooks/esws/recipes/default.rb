@@ -14,7 +14,15 @@ execute "download" do
    command "echo #{install['product_url']} > /tmp/data_bags"
 end
 
-# Extendering the data bag model for secret data
+# Extendering the data bag model for secret data.
+# The schema is generally identical with the previous one. Theo only change is the presence
+# of a security key used to encrypt the content. The key is generated from openssl:
+#   openssl rand -base64 1024 > secret_key
+#   knife data bag create secrets
+#   knife data bag from file secrets data_bags/secrets/postgresql.json --secret-file ./secret_key
+#   knife data bag show secrets postgresql --secret-file ./secret_key
+# The secret_key must be shared with the instance, e.g. though a repository. The reference
+# to repository can be given though the attributes.
 secret_file = Chef::EncryptedDataBagItem.load_secret("#{node['esws']['secret_file']}")
 secret_data = Chef::EncryptedDataBagItem.load("secrets","postgresql", secret_file )
 
