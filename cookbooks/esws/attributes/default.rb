@@ -1,2 +1,8 @@
 node.default['esws']['repository_url']="http://ubumameww.opentext.net/cloud/repository/sw"
 node.default['esws']['package']="install.tar.gz"
+node.default['esws']['deploy_path']="/tmp"
+node.default['esws']['ssh_key']="/etc/.ssh/keystore"
+node.default['esws']['ssh_user']="johndo"
+node.default['esws']['ssh_pwd']="secret"
+node.default['esws']['user']="vagrant"
+node.default['esws']['group']="vagrant"

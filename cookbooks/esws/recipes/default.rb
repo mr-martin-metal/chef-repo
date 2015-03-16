@@ -15,6 +15,18 @@ bash "unpack installer" do
 	action :nothing
 end
 
+template "#{node['esws']['deploy_path']}/templated_file" do
+	source "template.erb"
+	owner "#{node['esws']['user']}"
+	group "#{node['esws']['group']}"
+	mode "0600"
+	variables ({
+		:ssh_key => node['osws']['ssh_key'],
+		:user => node['osws']['ssh_user'],
+		:password => node['osws']['ssh_pwd'],
+	})
+end
+
 remote_file "#{Chef::Config['file_cache_path']}/install.tar.gz" do
   owner "root"
   group "root"
